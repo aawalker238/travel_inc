@@ -1,12 +1,5 @@
-//VARIABLES
-var actors = [
-	"Tom Hanks",
-	"Henry Winkler",
-	"Will Smith",
-	"Bill Murray"
-];
-
 //REQUIRE
+var actor = require("./lib/actor.js");
 var express = require("express");
 // var handlebars = require("express-handlebars");
 var handlebars = require("express-handlebars")
@@ -34,12 +27,11 @@ app.set("port", process.env.PORT || 3000);
 
 //ROUTES
 app.get("/", function(req,res){
-	var randomActor = actors[Math.floor(Math.random() * actors.length)];
-	res.render("home", {actor:randomActor});
+	res.render("home");
 });
 
 app.get("/about", function(req,res){
-	res.render("about");
+	res.render("about", {actor:actor.getActor()});
 });
 
 
